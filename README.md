@@ -36,6 +36,14 @@ Information required from data schema in .amz
 	<title>
 </track>
 ```
+Each mp3 is included in its own track 'bucket'
 
-other items currently extraneous
+other data items currently extraneous
 
+Recommended JSON format
+=======================
+
+{"tracks":[
+    {"location":"###", "creator":"###", "album":"###", "title":"###"},
+	{"location":"###", "creator":"###", "album":"###", "title":"###"}
+]}
