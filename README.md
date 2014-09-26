@@ -8,7 +8,7 @@ Initial thoughts on script work flow
 
 1. User initiates the script
 2. User selects input file (.amz)
-3. Scripts takes .amz file and converts data to universal json format
+3. Scripts takes .amz file and strips out the unwanted data entries, then converts data to universal json format
 4. Script now displays mp3s associated with the .amz file & their pertinents
 5. User selects which mp3s they want to download, (all, specific mp3s) as well as number of concurrent downloads
 6. User starts the script downloading the mp3s
@@ -36,14 +36,16 @@ Information required from data schema in .amz
 	<title>
 </track>
 ```
-Each mp3 is included in its own track 'bucket'
+Each mp3 is included in its own unique track 'bucket'
 
 other data items currently extraneous
 
 Recommended JSON format
 =======================
 
+```
 {"tracks":[
     {"location":"###", "creator":"###", "album":"###", "title":"###"},
 	{"location":"###", "creator":"###", "album":"###", "title":"###"}
 ]}
+```
