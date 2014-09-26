@@ -23,4 +23,13 @@ Initial thoughts on GUI
 
 1. Command line
 2. GUI framework (pyGTK, pyQT, Tkinter)
-3. Web framework (Flask or Tornado) 
+3. Web framework (Flask or Tornado)
+
+Information required from data schema in .amz
+=============================================
+
+1. location
+2. creator
+3. album
+4. title
+
