@@ -9,7 +9,7 @@ Initial thoughts on script workflow
 1. User initiates the script
 2. User selects input file (.amz)
 3. Scripts takes .amz file and converts data to universal json format
-4. script now displays mp3s associated with the .amz file & their pertinents
+4. Script now displays mp3s associated with the .amz file & their pertinents
 5. User selects which mp3s they want to download, (all, specific mp3s) as well as number of concurrent downloads
 6. User starts the script downloading the mp3s
 
