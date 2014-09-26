@@ -17,6 +17,7 @@ Initial thoughts on improvement from original work flow
 ======================================================
 
 1. Allow the script to create the directory structure for your files (Artist/Album/mp3s)
+2. Integrate Keen.io API to track events through the work flow cycle (open the source file, strip un-needed data, data conversion, get number of mp3s to handle, completion of each of those mp3s)
 
 Initial thoughts on GUI
 =======================
