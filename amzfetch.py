@@ -2,35 +2,36 @@
 # amzfetch.py
 # Description: Tool for downloading Amazon MP3s using a .amz file.
 # Version: 0.00.00
-# Last Updated: Fri 26 Sep 2014 11:35:13 PM PDT  
+# Last Updated: Sat 27 Sep 2014 01:40:22 PM PDT    
 # Leigh Burton, lburton@metacache.net
-# Status: it just dumps the input file to console.
+# Status: Parsing URL, song name, artist & album to screen working. 
  
 import os
 import sys
 import argparse
+from xml.dom import minidom
 
 
 def main(arguments):
 
     script, input_file = sys.argv
-    in_file = open(input_file)
-    prop = in_file.read()
-
-    #This doesn't seem to strip the whitespace, even though it should.    
-    striped = prop.strip()
     
-    #print striped
-
-    #This doesn't error, it just doesn't work :(
-    with open('newfile.amz', 'w') as newfile:
-        for line in striped:
-            if 'meta' in line:
-                pass
-            else:
-                newfile.write(line)
-    newin = open('newfile.amz', 'r')
-    print newin.read()
+    xmldoc = minidom.parse(input_file)
+    itemloc = xmldoc.getElementsByTagName('location')
+    itemtitle = xmldoc.getElementsByTagName('title')
+    itemcreator = xmldoc.getElementsByTagName('creator')
+    itemalbum = xmldoc.getElementsByTagName('album')
+     
+    print "%s Songs \n" % len(itemloc)
+    itemtotal = len(itemloc)
+    itemtotal = itemtotal - 1
+    itemfoo = 0
+    while itemfoo != itemtotal:
+        print "URL: %s" % itemloc[itemfoo].childNodes[0].nodeValue
+        print "Song: %s" % itemtitle[itemfoo + 1].childNodes[0].nodeValue
+        print "Artist: %s" % itemcreator[itemfoo].childNodes[0].nodeValue
+        print "Album: %s \n" % itemalbum[itemfoo].childNodes[0].nodeValue
+        itemfoo = itemfoo + 1
 
 #for line in prop:
 #    line2 = line.strip( )
