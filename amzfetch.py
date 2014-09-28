@@ -1,16 +1,16 @@
 #!/usr/bin/env python
 # amzfetch.py
 # Description: Tool for downloading Amazon MP3s using a .amz file.
-# Version: 0.00.00
-# Last Updated: Sat 27 Sep 2014 01:40:22 PM PDT    
+# Version: 0.10.00
+# Last Updated: Sat 27 Sep 2014 08:35:02 PM PDT    
 # Leigh Burton, lburton@metacache.net
-# Status: Parsing URL, song name, artist & album to screen working. 
+# Status: IT WORKS!!!!! Sequential download of MP3s! 
  
 import os
 import sys
 import argparse
+import urllib2
 from xml.dom import minidom
-
 
 def main(arguments):
 
@@ -19,23 +19,27 @@ def main(arguments):
     xmldoc = minidom.parse(input_file)
     itemloc = xmldoc.getElementsByTagName('location')
     itemtitle = xmldoc.getElementsByTagName('title')
+    itemtnum = xmldoc.getElementsByTagName('trackNum')
     itemcreator = xmldoc.getElementsByTagName('creator')
     itemalbum = xmldoc.getElementsByTagName('album')
      
     print "%s Songs \n" % len(itemloc)
     itemtotal = len(itemloc)
-    itemtotal = itemtotal - 1
     itemfoo = 0
     while itemfoo != itemtotal:
-        print "URL: %s" % itemloc[itemfoo].childNodes[0].nodeValue
-        print "Song: %s" % itemtitle[itemfoo + 1].childNodes[0].nodeValue
-        print "Artist: %s" % itemcreator[itemfoo].childNodes[0].nodeValue
-        print "Album: %s \n" % itemalbum[itemfoo].childNodes[0].nodeValue
+        mp3url = itemloc[itemfoo].childNodes[0].nodeValue
+        mp3title = itemtitle[itemfoo + 1].childNodes[0].nodeValue
+        mp3tnum = itemtnum[itemfoo].childNodes[0].nodeValue
+        mp3creator = itemcreator[itemfoo].childNodes[0].nodeValue
+        mp3album = itemalbum[itemfoo].childNodes[0].nodeValue
+        
+        print "\033[94mArtist: \033[92m%s \033[94mSong: \033[92m%s \033[94mAlbum: \033[92m%s" % (mp3creator, mp3title, mp3album)
+        print "\033[94mURL: \033[92m%s\n" % mp3url
+        response = urllib2.urlopen(mp3url)
+        mp3out = response.read()
+        with open(mp3tnum + ' ' + mp3title + '.mp3', 'w') as newfile:
+                newfile.write(mp3out)
         itemfoo = itemfoo + 1
-
-#for line in prop:
-#    line2 = line.strip( )
-#    print line2
     
 if __name__ == '__main__':
     sys.exit(main(sys.argv[1:]))
