@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # amzfetch.py
 # Description: Tool for downloading Amazon MP3s using a .amz file.
-# Version: 0.10.00
-# Last Updated: Sat 27 Sep 2014 08:35:02 PM PDT    
+# Version: 0.10.10
+# Last Updated: Sun 28 Sep 2014 04:27:21 PM PDT     
 # Leigh Burton, lburton@metacache.net
 # Status: IT WORKS!!!!! Sequential download of MP3s! 
  
@@ -14,7 +14,11 @@ from xml.dom import minidom
 
 def main(arguments):
 
-    script, input_file = sys.argv
+    parser = argparse.ArgumentParser()
+    parser.add_argument('infile', help = "Input file (.amz)")
+    args = parser.parse_args(arguments)
+
+    _, input_file = sys.argv
     
     xmldoc = minidom.parse(input_file)
     itemloc = xmldoc.getElementsByTagName('location')

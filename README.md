@@ -3,14 +3,22 @@ amzfetch.py
 
 Tool to pull down Amazon MP3s via a .amz (XML) file.
 
-amzfetch.py v0.10.00
+amzfetch.py v0.10.10
 ------------------------------------
+
+* Added simple argparse stuff to handle user providing no input, this also handles the help page. looking for a way to use the argument used in this particular piece of code to handle all the rest (so I don't have to use _, input_file = sys.argv)
 
 User invokes the script as follows:
     python amzfetch.py pathto.amz
     
 This version is very basic, but it DOES work, (it has been tested multiple times via actual .amz files from amazon digital store.
+
 There are multiple improvements I can probably do even on this code alone (the download handling for instance, I already know of a more elegent way of doing that, these kind of changes will be integrated into v0.30.00 code base, I want to get error handling throughout the code working correctly before I make large changes to the functionality code.
+
+v0.10.10 KNOWN ISSUES
+---------------------
+
+* The URLs in the .amz file expire after a certain amount of time, if you try to use an expired .amz file the app will error.
 
 Planned future improvements
 ---------------------------
