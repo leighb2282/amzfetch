@@ -15,7 +15,7 @@ from xml.dom import minidom
 def main(arguments):
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('infile', help = "Input file (.amz)")
+    parser.add_argument('infile.amz', help = "Input file (.amz)")
     args = parser.parse_args(arguments)
 
     _, input_file = sys.argv
