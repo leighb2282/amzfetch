@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # amzfetch.py
 # Description: Tool for downloading Amazon MP3s using a .amz file.
-# Version: 0.10.10
-# Last Updated: Sun 28 Sep 2014 04:27:21 PM PDT     
+# Version: 0.10.20
+# Last Updated: Wed 01 Oct 2014 10:00:42 AM PDT      
 # Leigh Burton, lburton@metacache.net
 # Status: IT WORKS!!!!! Sequential download of MP3s! 
  
@@ -15,17 +15,17 @@ from xml.dom import minidom
 def main(arguments):
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('infile.amz', help = "Input file (.amz)")
+    parser.add_argument('infile', help = "Input file (.amz)")
     args = parser.parse_args(arguments)
 
-    _, input_file = sys.argv
-    
-    xmldoc = minidom.parse(input_file)
-    itemloc = xmldoc.getElementsByTagName('location')
-    itemtitle = xmldoc.getElementsByTagName('title')
-    itemtnum = xmldoc.getElementsByTagName('trackNum')
-    itemcreator = xmldoc.getElementsByTagName('creator')
-    itemalbum = xmldoc.getElementsByTagName('album')
+    #_, input_file = sys.argv
+    with open(args.infile, 'r') as input_file:
+        xmldoc = minidom.parse(input_file)
+        itemloc = xmldoc.getElementsByTagName('location')
+        itemtitle = xmldoc.getElementsByTagName('title')
+        itemtnum = xmldoc.getElementsByTagName('trackNum')
+        itemcreator = xmldoc.getElementsByTagName('creator')
+        itemalbum = xmldoc.getElementsByTagName('album')
      
     print "%s Songs \n" % len(itemloc)
     itemtotal = len(itemloc)
@@ -41,7 +41,7 @@ def main(arguments):
         print "\033[94mURL: \033[92m%s\n" % mp3url
         response = urllib2.urlopen(mp3url)
         mp3out = response.read()
-        with open(mp3tnum + ' ' + mp3title + '.mp3', 'w') as newfile:
+        with open(mp3tnum + ' ' + mp3title + '.mp3', 'wb') as newfile:
                 newfile.write(mp3out)
         itemfoo = itemfoo + 1
     
