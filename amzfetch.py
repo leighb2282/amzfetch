@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # amzfetch.py
 # Description: Tool for downloading Amazon MP3s using a .amz file.
-# Version: 0.20.00
-# Last Updated: Fri 03 Oct 2014 03:21:41 PM PDT      
+# Version: 0.23.00
+# Last Updated: Fri 03 Oct 2014 07:52:35 PM PDT     
 # Leigh Burton, lburton@metacache.net
 # Status: GUI via TkInter, Displays list of MP3s in the .amz file, user can then download them. 
  
@@ -15,13 +15,18 @@ from Tkinter import *
 
 
 def main(arguments):
+    console = Tk()
+    console.title('Console Output')
+    
+    def allquit():
+        console.destroy()
+        root.destroy()
         
     root = Tk()
     parser = argparse.ArgumentParser()
     parser.add_argument('infile', help = "Input file (.amz)")
     args = parser.parse_args(arguments)
 
-    #_, input_file = sys.argv
     with open(args.infile, 'r') as input_file:
         xmldoc = minidom.parse(input_file)
         itemloc = xmldoc.getElementsByTagName('location')
@@ -30,13 +35,14 @@ def main(arguments):
         itemcreator = xmldoc.getElementsByTagName('creator')
         itemalbum = xmldoc.getElementsByTagName('album')
      
-    print "%s Songs \n" % len(itemloc)
     itemtotal = len(itemloc)
     itemfoo = 0
-    
+    label = Label(console, text=str(itemtotal) + ' songs in ' + args.infile, fg="#357EC7").grid(sticky=W)
     def urldl():
+        
         itemfoo = 0
-        print "\033[91mStarting Download of %s songs" % itemtotal
+        label = Label(console, text='Starting Download of ' + str(itemtotal) + ' songs', fg="red").grid(sticky=W)
+        console.update()
         while itemfoo != itemtotal:
             
             mp3url = itemloc[itemfoo].childNodes[0].nodeValue
@@ -48,9 +54,11 @@ def main(arguments):
             mp3out = response.read()
             with open(mp3tnum + ' ' + mp3title + '.mp3', 'wb') as newfile:
                 newfile.write(mp3out)
-            print "\033[94mArtist: \033[92m%s \033[94mSong: \033[92m%s \033[39mDownloaded" % (mp3creator, mp3title)
+            label = Label(console, text=str(mp3title) + ' by ' + str(mp3creator) + ' Downloaded').grid(sticky=W)
+            console.update()
             itemfoo = itemfoo + 1
-        print "\033[91mAll Items Downloaded"
+        label = Label(console, text='All Items Downloaded', fg="red").grid(sticky=W)
+        console.update()
         
     while itemfoo != itemtotal:
         mp3url = itemloc[itemfoo].childNodes[0].nodeValue
@@ -66,10 +74,12 @@ def main(arguments):
         dalbumitemfoo = Label(root, text=str(mp3album)).grid(row=itemfoo, column=5, sticky=W)
         itemfoo = itemfoo + 1
     
-    dlquit = Button(root, text='Quit', command=root.quit).grid(row=itemfoo, column=0, sticky=E)
+    dlquit = Button(root, text='Quit', command=allquit).grid(row=itemfoo, column=0, sticky=E)
     dlurl = Button(root, text='Download Songs', command=urldl).grid(row=itemfoo, column=1, sticky=E)
     root.title('amzfetch.py :: ' + args.infile)
     root.mainloop()
+    
+    console.mainloop()
     
 if __name__ == '__main__':
     sys.exit(main(sys.argv[1:]))
