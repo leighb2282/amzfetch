@@ -4,7 +4,7 @@
 # Version: 0.25.00
 # Last Updated: Mon 06 Oct 2014 10:43:07 PM PDT 
 # Leigh Burton, lburton@metacache.net
-# Status: Full Re-write in process, to allow in-app loading of files.
+# Status: Re-Writing GUI portions of the code to better handle what it needs to do.
 
 # DEBUG version of the Code, this version will not download MP3s (download code commented out for debugging purposes)
 # This code will be used to debug GUI issues when trying to load mutliple amz files a session

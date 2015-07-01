@@ -8,7 +8,7 @@ Requires TkInter, can be installed via your Distro's package manager)
 amzfetch.py v0.25.00
 ------------------------------------
 
-![alt tag](http://amzfetch.metacache.net/github/v0.25.00.png)
+![alt tag](http://leigh-burton.com/code/amzfetch/v0.25.00.png)
 
 New GUI implemented via TkInter, with information pertaining to the download of mp3s now outputting to a console window.
 

@@ -4,7 +4,7 @@
 # Version: 0.25.00
 # Last Updated: Mon 06 Oct 2014 10:43:07 PM PDT 
 # Leigh Burton, lburton@metacache.net
-# Status: Full Re-write in process, to allow in-app loading of files.
+# Status: GUI being further developed - will be handled via amzfetch-d.py
  
 import os
 import sys
