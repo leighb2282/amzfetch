@@ -2,8 +2,7 @@
 # amzfetch.py
 # Description: Tool for downloading Amazon MP3s using a .amz file.
 # Version: 0.25.00
-# Last Updated: Mon 06 Oct 2014 10:43:07 PM PDT 
-# Leigh Burton, lburton@metacache.net
+# Leigh Burton, leigh@leigh-burton.com
 # Status: GUI being further developed - will be handled via amzfetch-d.py
  
 import os

@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 # amzfetch-c.py
 # Description: Tool for downloading Amazon MP3s using a .amz file.
-# Version: 0.10.20
-# Last Updated: Wed 01 Oct 2014 10:00:42 AM PDT      
-# Leigh Burton, lburton@metacache.net
+# Version: 0.20.00      
+# Leigh Burton, leigh@leigh-burton.com
 # Status: command line version of amzfetch. no frills downloads.
  
 import os

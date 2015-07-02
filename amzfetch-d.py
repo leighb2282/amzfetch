@@ -2,8 +2,7 @@
 # amzfetch-d.py
 # Description: Tool for downloading Amazon MP3s using a .amz file (Debug Version)
 # Version: 0.25.00
-# Last Updated: Mon 06 Oct 2014 10:43:07 PM PDT 
-# Leigh Burton, lburton@metacache.net
+# Leigh Burton, lburton@leigh-burton.com
 # Status: Re-Writing GUI portions of the code to better handle what it needs to do.
 
 # DEBUG version of the Code, this version will not download MP3s (download code commented out for debugging purposes)

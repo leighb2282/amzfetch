@@ -35,6 +35,5 @@ Planned future improvements
 * Allow one instance of the tool to download multiple .amz files - currently to feed it another .amz file you will need to close and re-open the tool.
 * fix the above error where if you close the console window before using the quit button on the main window it will error.
 * Allow synchronous download of files.
-* Integrate Keen.io API to track events through the work flow cycle (open the source file, Gather needed data on tracks & total % of tracks, completion of each of those mp3s).
 * All above improvements + Known issues + complete bug fixes. (v1.00.00)
 
